@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </radialGradient>
+    <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fde68a"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </radialGradient>
+    <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="96" fill="url(#bgGrad)"/>
+
+  <!-- Glow -->
+  <ellipse cx="256" cy="220" rx="140" ry="120" fill="url(#glowGrad)"/>
+
+  <!-- Sun rays -->
+  <g transform="translate(220, 185)" opacity="0.85">
+    <line x1="36" y1="0" x2="36" y2="-28" stroke="#fde68a" stroke-width="8" stroke-linecap="round"/>
+    <line x1="36" y1="72" x2="36" y2="100" stroke="#fde68a" stroke-width="8" stroke-linecap="round"/>
+    <line x1="0" y1="36" x2="-28" y2="36" stroke="#fde68a" stroke-width="8" stroke-linecap="round"/>
+    <line x1="72" y1="36" x2="100" y2="36" stroke="#fde68a" stroke-width="8" stroke-linecap="round"/>
+    <line x1="10" y1="10" x2="-10" y2="-10" stroke="#fde68a" stroke-width="8" stroke-linecap="round"/>
+    <line x1="62" y1="62" x2="82" y2="82" stroke="#fde68a" stroke-width="8" stroke-linecap="round"/>
+    <line x1="62" y1="10" x2="82" y2="-10" stroke="#fde68a" stroke-width="8" stroke-linecap="round"/>
+    <line x1="10" y1="62" x2="-10" y2="82" stroke="#fde68a" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+  <!-- Sun body -->
+  <circle cx="256" cy="221" r="52" fill="url(#sunGrad)" filter="url(#glow)"/>
+
+  <!-- Cloud -->
+  <g filter="url(#glow)">
+    <ellipse cx="256" cy="310" rx="90" ry="42" fill="white" opacity="0.95"/>
+    <ellipse cx="210" cy="300" rx="55" ry="40" fill="white" opacity="0.95"/>
+    <ellipse cx="300" cy="295" rx="50" ry="38" fill="white" opacity="0.95"/>
+    <ellipse cx="256" cy="330" rx="90" ry="28" fill="white" opacity="0.95"/>
+  </g>
+
+  <!-- Cyan accent line -->
+  <rect x="176" y="370" width="160" height="6" rx="3" fill="#38bdf8" opacity="0.6"/>
+</svg>

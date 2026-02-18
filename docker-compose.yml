@@ -1,0 +1,18 @@
+services:
+  weather-pwa:
+    build: .
+    container_name: weather-pwa
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # Mount real certificates here.
+      # Option A — IONOS certificates (download from IONOS panel):
+      #   Replace the paths below with the actual paths on your server.
+      - ./certs/fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
+      - ./certs/privkey.pem:/etc/nginx/ssl/privkey.pem:ro
+      #
+      # Option B — Let's Encrypt / Certbot (run certbot on the host first):
+      # - /etc/letsencrypt/live/yourdomain.com/fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
+      # - /etc/letsencrypt/live/yourdomain.com/privkey.pem:/etc/nginx/ssl/privkey.pem:ro
