@@ -4,15 +4,32 @@ services:
     container_name: weather-pwa
     restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      # Mount real certificates here.
-      # Option A — IONOS certificates (download from IONOS panel):
-      #   Replace the paths below with the actual paths on your server.
-      - ./certs/fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
-      - ./certs/privkey.pem:/etc/nginx/ssl/privkey.pem:ro
+      # Puertos alternativos para desarrollo local (80 y 443 pueden estar ocupados)
+      # Accede en: http://localhost:8080  y  https://localhost:8443
+      - "8080:80"
+      - "8443:443"
       #
-      # Option B — Let's Encrypt / Certbot (run certbot on the host first):
-      # - /etc/letsencrypt/live/yourdomain.com/fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
-      # - /etc/letsencrypt/live/yourdomain.com/privkey.pem:/etc/nginx/ssl/privkey.pem:ro
+      # Para producción en IONOS (puertos estándar):
+      # - "80:80"
+      # - "443:443"
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # CERTIFICADOS SSL
+    # Por defecto el contenedor usa un certificado autofirmado (para pruebas).
+    # Para producción en IONOS, descomenta UNA de las opciones siguientes:
+    #
+    # Opción A — Certificados descargados desde el panel de IONOS:
+    #   1. Crea la carpeta: mkdir certs
+    #   2. Copia tus archivos: certs/fullchain.pem y certs/privkey.pem
+    #   3. Descomenta las líneas de abajo
+    #
+    # volumes:
+    #   - ./certs/fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
+    #   - ./certs/privkey.pem:/etc/nginx/ssl/privkey.pem:ro
+    #
+    # Opción B — Let's Encrypt / Certbot (ejecutar certbot en el host primero):
+    #
+    # volumes:
+    #   - /etc/letsencrypt/live/tu-dominio.com/fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
+    #   - /etc/letsencrypt/live/tu-dominio.com/privkey.pem:/etc/nginx/ssl/privkey.pem:ro
+    # ─────────────────────────────────────────────────────────────────────────
